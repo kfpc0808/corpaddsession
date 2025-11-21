@@ -1,0 +1,1579 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=10.0, user-scalable=yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>중소기업 통합경영시스템 - 월 10만원의 혁신</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+            -webkit-touch-callout: none;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        :root {
+            --navy-blue: #1a237e;
+            --light-purple: #e1bee7;
+            --text-black: #212121;
+            --text-navy: #1a237e;
+            --text-purple: #7b1fa2;
+            --bg-white: #ffffff;
+            --bg-light: #f5f5f5;
+            --card-shadow: 0 4px 20px rgba(26, 35, 126, 0.08);
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;
+            background: var(--bg-light);
+            min-height: 100vh;
+            min-height: -webkit-fill-available;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0;
+            position: relative;
+            height: 100vh;
+            height: -webkit-fill-available;
+        }
+
+        /* Card Slider */
+        .card-slider {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            height: -webkit-fill-available;
+            overflow: hidden;
+        }
+
+        .card-wrapper {
+            display: flex;
+            transition: transform 0.5s cubic-bezier(0.645, 0.045, 0.355, 1);
+            height: 100%;
+            will-change: transform;
+            -webkit-user-select: none;
+            user-select: none;
+        }
+
+        .card {
+            min-width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start; /* 콘텐츠는 위에서부터 시작 */
+            align-items: center;
+            padding: 4vh 6vw;          /* 상단/하단 여백 균형형(②) */
+            position: relative;
+            background: var(--bg-white);
+            color: var(--text-black);
+            overflow: hidden;          /* 세로 모드에서는 스크롤 없이 한 화면 */
+        }
+
+        /* 카드 내부 첫/마지막 요소 여백 제거 → 테두리와 거리 통일 */
+        .card > *:first-child {
+            margin-top: 0 !important;
+        }
+
+        .card > *:last-child {
+            margin-bottom: 0 !important;
+        }
+
+        /* Card 1 - Hero */
+        .card-1 {
+            background: var(--navy-blue);
+            color: white;
+            text-align: center;
+        }
+
+        .card-1 .main-emoji {
+            font-size: 15vh;
+            margin-bottom: 1.5vh;
+            animation: bounce 2s infinite;
+        }
+
+        .card-1 h1 {
+            font-size: 6.2vh;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 1.8vh;
+        }
+
+        .card-1 .highlight {
+            font-size: 4.2vh;
+            background: rgba(255,255,255,0.1);
+            padding: 2vh 4vw;
+            border-radius: 15px;
+            display: inline-block;
+            margin: 1.8vh 0;
+            border: 2px solid rgba(255,255,255,0.3);
+            line-height: 1.3;
+        }
+
+        .card-1 .tags {
+            font-size: 2.6vh;
+            margin-top: 1.8vh;
+            color: var(--light-purple);
+            font-weight: 600;
+        }
+
+        .card-1 .subtitle {
+            font-size: 2.8vh;
+            margin-top: 2.2vh;
+            font-weight: 600;
+        }
+
+        /* Card 2 - Problems */
+        .card-2 {
+            background: var(--bg-white);
+        }
+
+        .card-2 .emoji-header {
+            font-size: 10vh;
+            margin-bottom: 1.5vh;
+        }
+
+        .card-2 h2 {
+            font-size: 4.2vh;
+            font-weight: 700;
+            margin-bottom: 1.8vh;
+            color: var(--text-navy);
+        }
+
+        .problem-list {
+            width: 100%;
+            max-width: 92%;
+        }
+
+        .problem-item {
+            background: var(--bg-light);
+            padding: 1.6vh 3vw;
+            margin-bottom: 1.1vh;
+            border-radius: 10px;
+            font-size: 2.1vh;
+            line-height: 1.45;
+            border-left: 4px solid var(--navy-blue);
+            color: var(--text-black);
+        }
+
+        .card-2 .footer-text {
+            margin-top: 1.8vh;
+            font-size: 2.4vh;
+            font-weight: 700;
+            color: var(--text-purple);
+            padding: 1.5vh 3vw;
+            background: var(--light-purple);
+            border-radius: 10px;
+            line-height: 1.45;
+        }
+
+        /* Card 3 - Solution */
+        .card-3 {
+            background: var(--bg-white);
+        }
+
+        .card-3 .emoji-header {
+            font-size: 9vh;
+            margin-bottom: 1vh;
+        }
+
+        .card-3 h2 {
+            font-size: 3.9vh;
+            font-weight: 700;
+            margin-bottom: 1vh;
+            color: var(--text-navy);
+        }
+
+        .card-3 .subtitle {
+            font-size: 2.7vh;
+            margin-bottom: 1.8vh;
+            color: var(--text-black);
+            line-height: 1.35;
+        }
+
+        .feature-box {
+            background: var(--bg-light);
+            padding: 1.5vh 3vw;
+            border-radius: 10px;
+            margin-bottom: 1.1vh;
+            text-align: left;
+            width: 100%;
+            max-width: 92%;
+            border-left: 4px solid var(--navy-blue);
+        }
+
+        .feature-box h3 {
+            font-size: 2.3vh;
+            margin-bottom: 0.5vh;
+            font-weight: 700;
+            color: var(--text-navy);
+        }
+
+        .feature-box p {
+            font-size: 2vh;
+            line-height: 1.45;
+            color: var(--text-black);
+        }
+
+        /* Cards 4-6 - Features */
+        .card-4 {
+            background: var(--bg-white);
+        }
+
+        .card-5 {
+            background: var(--light-purple);
+        }
+
+        .card-6 {
+            background: var(--bg-white);
+        }
+
+        .feature-card h2 {
+            font-size: 3.9vh;
+            font-weight: 700;
+            margin-bottom: 1.8vh;
+            color: var(--text-navy);
+            text-align: center;
+        }
+
+        .feature-card .emoji-header {
+            font-size: 8vh;
+            margin-bottom: 1.5vh;
+        }
+
+        .feature-item {
+            background: var(--bg-light);
+            padding: 1.7vh 3vw;
+            border-radius: 10px;
+            margin-bottom: 1.1vh;
+            text-align: left;
+            width: 100%;
+            max-width: 92%;
+            border-left: 4px solid var(--navy-blue);
+        }
+
+        .card-5 .feature-item {
+            background: white;
+            border-left: 4px solid var(--text-purple);
+        }
+
+        .feature-item h3 {
+            font-size: 2.3vh;
+            font-weight: 700;
+            margin-bottom: 0.7vh;
+            color: var(--text-navy);
+        }
+
+        .card-5 .feature-item h3 {
+            color: var(--text-purple);
+        }
+
+        .feature-item p {
+            font-size: 2vh;
+            line-height: 1.45;
+            color: var(--text-black);
+        }
+
+        .feature-item ul {
+            list-style: none;
+            padding-left: 0;
+            margin-top: 0.5vh;
+        }
+
+        .feature-item ul li {
+            font-size: 1.8vh;
+            padding-left: 3vw;
+            margin-bottom: 0.3vh;
+            position: relative;
+            color: var(--text-black);
+            line-height: 1.5;
+        }
+
+        .feature-item ul li:before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            font-weight: 700;
+            color: var(--navy-blue);
+        }
+
+        /* Card 7 - Benefits */
+        .card-7 {
+            background: var(--bg-white);
+        }
+
+        .card-7 h2 {
+            font-size: 3.9vh;
+            font-weight: 700;
+            margin-bottom: 1.4vh;
+            color: var(--text-navy);
+        }
+
+        .benefit-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1vh;
+            width: 100%;
+            max-width: 92%;
+        }
+
+        .benefit-item {
+            background: var(--bg-light);
+            padding: 1.5vh 2.5vw;
+            border-radius: 10px;
+            border: 2px solid var(--navy-blue);
+        }
+
+        .benefit-header {
+            display: flex;
+            align-items: center;
+            gap: 1vw;
+            margin-bottom: 0.7vh;
+        }
+
+        .benefit-number {
+            font-size: 3.8vh;
+            font-weight: 700;
+            color: var(--text-navy);
+            flex-shrink: 0;
+        }
+
+        .benefit-title {
+            font-size: 2.3vh;
+            font-weight: 700;
+            line-height: 1.2;
+            color: var(--text-black);
+            white-space: nowrap;
+            flex: 1;
+        }
+
+        .benefit-desc {
+            font-size: 2vh;
+            line-height: 1.45;
+            color: var(--text-black);
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.3vh 1.5vw;
+        }
+
+        .benefit-desc-item {
+            flex: 0 0 auto;
+            min-width: 45%;
+        }
+
+        /* Card 8 - Pricing */
+        .card-8 {
+            background: var(--bg-white);
+        }
+
+        .card-8 h2 {
+            font-size: 3.9vh;
+            font-weight: 700;
+            margin-bottom: 1.8vh;
+            color: var(--text-navy);
+        }
+
+        .pricing-compare {
+            width: 100%;
+            max-width: 92%;
+        }
+
+        .pricing-box {
+            background: var(--bg-light);
+            padding: 1.8vh 3vw;
+            border-radius: 12px;
+            margin-bottom: 1.3vh;
+            border: 2px solid #ddd;
+        }
+
+        .pricing-box h3 {
+            font-size: 2.4vh;
+            font-weight: 700;
+            margin-bottom: 0.9vh;
+            color: var(--text-black);
+        }
+
+        .pricing-box.highlight {
+            background: var(--navy-blue);
+            color: white;
+            border: 3px solid var(--text-purple);
+        }
+
+        .pricing-box.highlight h3 {
+            color: var(--light-purple);
+        }
+
+        .pricing-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.9vh 0;
+            font-size: 2vh;
+            font-weight: 600;
+            color: var(--text-black);
+        }
+
+        .pricing-box.highlight .pricing-item {
+            color: white;
+        }
+
+        .price-tag {
+            font-size: 3.3vh;
+            font-weight: 800;
+            color: var(--light-purple);
+        }
+
+        /* Card 9 - Promotion */
+        .card-9 {
+            background: var(--light-purple);
+        }
+
+        .card-9 .emoji-header {
+            font-size: 9vh;
+            margin-bottom: 1.5vh;
+        }
+
+        .card-9 h2 {
+            font-size: 3.9vh;
+            font-weight: 700;
+            margin-bottom: 1vh;
+            color: var(--text-navy);
+        }
+
+        .card-9 .promo-subtitle {
+            font-size: 2.4vh;
+            margin-bottom: 1.8vh;
+            font-weight: 600;
+            color: var(--text-black);
+        }
+
+        .promo-item {
+            background: white;
+            padding: 1.7vh 3vw;
+            border-radius: 10px;
+            margin-bottom: 1.1vh;
+            font-size: 2.1vh;
+            font-weight: 600;
+            color: var(--text-black);
+            border-left: 4px solid var(--text-purple);
+            width: 100%;
+            max-width: 92%;
+        }
+
+        .promo-deadline {
+            background: var(--navy-blue);
+            color: white;
+            padding: 1.7vh 3vw;
+            border-radius: 10px;
+            font-size: 2.4vh;
+            font-weight: 700;
+            margin: 1.8vh 0;
+            animation: pulse 2s infinite;
+        }
+
+        .promo-footer {
+            font-size: 2.4vh;
+            font-weight: 700;
+            margin-top: 1.8vh;
+            line-height: 1.5;
+            color: var(--text-black);
+        }
+
+        /* Card 10 - CTA */
+        .card-10 {
+            background: var(--navy-blue);
+            color: white;
+        }
+
+        .card-10 .emoji-header {
+            font-size: 10vh;
+            margin-bottom: 2vh;
+        }
+
+        .card-10 h2 {
+            font-size: 4.2vh;
+            font-weight: 700;
+            margin-bottom: 2.3vh;
+        }
+
+        .cta-message {
+            font-size: 2.7vh;
+            line-height: 1.5;
+            margin-bottom: 2.8vh;
+            max-width: 92%;
+            text-align: center;
+        }
+
+        .cta-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 1.4vh;
+            width: 100%;
+            max-width: 85%;
+        }
+
+        .cta-button {
+            background: white;
+            color: var(--navy-blue);
+            padding: 2.1vh 4vw;
+            border-radius: 50px;
+            font-size: 2.4vh;
+            font-weight: 700;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 2vw;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(0,0,0,0.2);
+        }
+
+        .cta-button.secondary {
+            background: var(--light-purple);
+            color: var(--text-purple);
+            border: 2px solid white;
+        }
+
+        .hashtags {
+            margin-top: 2.3vh;
+            font-size: 2.1vh;
+            color: var(--light-purple);
+            line-height: 1.5;
+            text-align: center;
+        }
+
+        /* Navigation */
+        .nav-dots {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: none;
+            gap: 10px;
+            z-index: 100;
+            background: rgba(26, 35, 126, 0.9);
+            padding: 10px 15px;
+            border-radius: 25px;
+            backdrop-filter: blur(10px);
+        }
+
+        .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.5);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .dot.active {
+            background: var(--light-purple);
+            width: 30px;
+            border-radius: 5px;
+        }
+
+        /* Arrow Navigation */
+        .nav-arrow {
+            position: fixed;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(26, 35, 126, 0.8);
+            color: white;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 24px;
+            cursor: pointer;
+            z-index: 100;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .nav-arrow:hover {
+            background: var(--navy-blue);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .nav-arrow.left {
+            left: 20px;
+        }
+
+        .nav-arrow.right {
+            right: 20px;
+        }
+
+        /* Animations */
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        /* Landscape Mobile Optimization (가로: 스크롤 허용) */
+        @media screen and (max-width: 896px) and (orientation: landscape) {
+            .card-slider {
+                height: 100vh;
+                height: -webkit-fill-available;
+            }
+
+            .card-wrapper {
+                height: 100vh;
+                height: -webkit-fill-available;
+            }
+
+            .card {
+                padding: 4vh 5vw;           /* 여백 유지 */
+                min-height: 100vh;
+                min-height: -webkit-fill-available;
+                height: auto;
+                overflow-y: auto;           /* 가로 모드에서는 세로 스크롤 가능 */
+                overflow-x: hidden;
+                -webkit-overflow-scrolling: touch;
+            }
+
+            .card-1 .main-emoji {
+                font-size: 18vw;
+                margin-bottom: 2vh;
+            }
+
+            .card-1 h1 {
+                font-size: 6vw;
+                margin-bottom: 2vh;
+            }
+
+            .card-1 .highlight {
+                font-size: 4.5vw;
+                padding: 2vh 4vw;
+                margin: 2vh 0;
+            }
+
+            .card-1 .tags {
+                font-size: 3vw;
+                margin-top: 2vh;
+            }
+
+            .card-1 .subtitle {
+                font-size: 3.5vw;
+                margin-top: 2vh;
+            }
+
+            .emoji-header, .card-2 .emoji-header, .card-9 .emoji-header, .card-10 .emoji-header {
+                font-size: 15vw !important;
+                margin-bottom: 2vh !important;
+            }
+
+            .feature-card .emoji-header {
+                font-size: 12vw !important;
+            }
+
+            h2 {
+                font-size: 5vw !important;
+                margin-bottom: 2vh !important;
+            }
+
+            .card-3 h2 {
+                margin-bottom: 1.5vh !important;
+            }
+
+            .card-3 .subtitle {
+                font-size: 3.5vw;
+                margin-bottom: 2vh;
+            }
+
+            .problem-item {
+                padding: 2vh 3vw;
+                margin-bottom: 1.5vh;
+                font-size: 2.8vw;
+                line-height: 1.5;
+            }
+
+            .card-2 .footer-text {
+                font-size: 3.2vw;
+                padding: 2vh 3vw;
+                margin-top: 2vh;
+                margin-bottom: 0;
+                line-height: 1.5;
+            }
+
+            .feature-box {
+                padding: 2vh 3vw;
+                margin-bottom: 1.5vh;
+            }
+
+            .feature-box h3 {
+                font-size: 3vw;
+                margin-bottom: 1vh;
+            }
+
+            .feature-box p {
+                font-size: 2.6vw;
+                line-height: 1.5;
+            }
+
+            .feature-item {
+                padding: 2vh 3vw;
+                margin-bottom: 1.5vh;
+            }
+
+            .feature-item h3 {
+                font-size: 3vw;
+                margin-bottom: 1vh;
+            }
+
+            .feature-item p {
+                font-size: 2.6vw;
+                line-height: 1.5;
+            }
+
+            .feature-item ul li {
+                font-size: 2.4vw;
+                padding-left: 4vw;
+                line-height: 1.6;
+            }
+
+            .card-6 h3 {
+                font-size: 3.5vw !important;
+                margin-bottom: 2vh !important;
+            }
+
+            .card-6 > div:last-child {
+                font-size: 3.2vw !important;
+                margin-top: 2vh !important;
+            }
+
+            /* Card 7 - Benefits 가로 모드 */
+            .card-7 > div:first-child {
+                font-size: 14vw !important;
+            }
+
+            .benefit-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 2vh 2vw;
+            }
+
+            .benefit-item {
+                padding: 2vh 2.5vw;
+            }
+
+            .benefit-header {
+                gap: 1.5vw;
+                margin-bottom: 1vh;
+            }
+
+            .benefit-number {
+                font-size: 6vw;
+            }
+
+            .benefit-title {
+                font-size: 3.1vw;
+                white-space: nowrap;
+            }
+
+            .benefit-desc {
+                font-size: 2.8vw;
+                gap: 0 2vw;
+            }
+
+            .benefit-desc-item {
+                min-width: 48%;
+                line-height: 1.6;
+            }
+
+            /* Card 8 - Pricing 가로 모드 */
+            .card-8 > div:first-child {
+                font-size: 12vw !important;
+            }
+
+            .pricing-box {
+                padding: 2vh 3vw;
+                margin-bottom: 1.5vh;
+            }
+
+            .pricing-box h3 {
+                font-size: 3.2vw;
+                margin-bottom: 1vh;
+            }
+
+            .pricing-item {
+                font-size: 2.6vw;
+                padding: 1vh 0;
+            }
+
+            .price-tag {
+                font-size: 4vw;
+            }
+
+            .card-8 .pricing-compare > div:last-child {
+                font-size: 2.8vw !important;
+                margin-top: 2vh !important;
+            }
+
+            /* Card 9 - Promo 가로 모드 */
+            .card-9 h2 {
+                margin-bottom: 1.5vh !important;
+            }
+
+            .card-9 .promo-subtitle {
+                font-size: 3.2vw;
+                margin-bottom: 2vh;
+            }
+
+            .promo-item {
+                font-size: 2.8vw;
+                padding: 2vh 3vw;
+                margin-bottom: 1.5vh;
+            }
+
+            .promo-deadline {
+                font-size: 3.5vw;
+                padding: 2vh 3vw;
+                margin: 2vh 0;
+            }
+
+            .promo-footer {
+                font-size: 3.2vw;
+                margin-top: 2vh;
+            }
+
+            /* Card 10 - CTA 가로 모드 */
+            .cta-message {
+                font-size: 3.5vw;
+                margin-bottom: 3vh;
+                line-height: 1.6;
+            }
+
+            .cta-button {
+                padding: 2.5vh 4vw;
+                font-size: 3.2vw;
+                gap: 2vw;
+            }
+
+            .hashtags {
+                margin-top: 2vh;
+                font-size: 2.8vw;
+            }
+
+            .nav-arrow {
+                width: 45px;
+                height: 45px;
+                font-size: 24px;
+            }
+
+            .nav-arrow.left {
+                left: 10px;
+            }
+
+            .nav-arrow.right {
+                right: 10px;
+            }
+        }
+
+        /* Portrait Mobile - Very Small Screens */
+        @media screen and (max-width: 380px) and (orientation: portrait) {
+            .card {
+                padding: 3.2vh 5vw;
+            }
+
+            .problem-item,
+            .feature-item,
+            .promo-item {
+                font-size: 1.9vh;
+            }
+
+            .benefit-grid {
+                grid-template-columns: 1fr;
+                gap: 0.8vh;
+            }
+
+            .benefit-item {
+                padding: 1.1vh 2.5vw;
+            }
+
+            .benefit-header {
+                gap: 2vw;
+                margin-bottom: 0.5vh;
+            }
+
+            .benefit-number {
+                font-size: 4.2vh;
+            }
+
+            .benefit-title {
+                font-size: 2vh;
+                white-space: nowrap;
+            }
+
+            .benefit-desc {
+                font-size: 1.8vh;
+                gap: 0.2vh 2vw;
+                line-height: 1.3;
+            }
+
+            .benefit-desc-item {
+                min-width: 45%;
+            }
+        }
+
+        /* Portrait Mobile - Medium to Large */
+        @media screen and (min-width: 381px) and (max-width: 480px) and (orientation: portrait) {
+            .card {
+                padding: 4vh 6vw;
+            }
+        }
+
+        /* Large Phones and Small Tablets - Portrait */
+        @media screen and (min-width: 481px) and (orientation: portrait) {
+            .card {
+                padding: 4vh 6vw;
+            }
+        }
+
+        /* Tablet and Desktop */
+        @media screen and (min-width: 768px) {
+            .nav-arrow {
+                display: flex;
+            }
+
+            .card {
+                padding: 40px 50px;
+                overflow: visible;
+            }
+
+            /* Card 1 */
+            .card-1 .main-emoji {
+                font-size: 100px;
+            }
+
+            .card-1 h1 {
+                font-size: 48px;
+            }
+
+            .card-1 .highlight {
+                font-size: 36px;
+                padding: 20px 35px;
+            }
+
+            .card-1 .tags {
+                font-size: 22px;
+            }
+
+            .card-1 .subtitle {
+                font-size: 24px;
+            }
+
+            /* Card 2 */
+            .card-2 .emoji-header {
+                font-size: 75px;
+            }
+
+            .card-2 h2 {
+                font-size: 38px;
+            }
+
+            .problem-item {
+                font-size: 19px;
+                padding: 18px 22px;
+            }
+
+            .card-2 .footer-text {
+                font-size: 21px;
+                padding: 16px 28px;
+            }
+
+            /* Card 3 */
+            .card-3 .emoji-header {
+                font-size: 70px;
+            }
+
+            .card-3 h2 {
+                font-size: 34px;
+            }
+
+            .card-3 .subtitle {
+                font-size: 22px;
+            }
+
+            .feature-box {
+                padding: 18px 22px;
+            }
+
+            .feature-box h3 {
+                font-size: 20px;
+            }
+
+            .feature-box p {
+                font-size: 17px;
+            }
+
+            /* Cards 4-6 */
+            .feature-card .emoji-header {
+                font-size: 65px;
+            }
+
+            .feature-card h2 {
+                font-size: 34px;
+            }
+
+            .feature-item {
+                padding: 18px 22px;
+            }
+
+            .feature-item h3 {
+                font-size: 20px;
+            }
+
+            .feature-item p {
+                font-size: 17px;
+            }
+
+            .feature-item ul li {
+                font-size: 16px;
+            }
+
+            /* Card 6 specific */
+            .card-6 h3 {
+                font-size: 24px !important;
+            }
+
+            .card-6 > div:last-child {
+                font-size: 22px !important;
+            }
+
+            /* Card 7 */
+            .card-7 > div:first-child {
+                font-size: 78px !important;
+            }
+
+            .card-7 h2 {
+                font-size: 40px;
+            }
+
+            .benefit-grid {
+                gap: 18px;
+            }
+
+            .benefit-item {
+                padding: 26px 22px;
+            }
+
+            .benefit-header {
+                gap: 12px;
+            }
+
+            .benefit-number {
+                font-size: 34px;
+            }
+
+            .benefit-title {
+                font-size: 22px;
+                white-space: nowrap;
+            }
+
+            .benefit-desc {
+                font-size: 18px;
+                gap: 0 18px;
+            }
+
+            .benefit-desc-item {
+                min-width: 45%;
+            }
+
+            /* Card 8 */
+            .card-8 > div:first-child {
+                font-size: 65px !important;
+            }
+
+            .card-8 h2 {
+                font-size: 34px;
+            }
+
+            .pricing-box {
+                padding: 20px 25px;
+            }
+
+            .pricing-box h3 {
+                font-size: 22px;
+            }
+
+            .pricing-item {
+                font-size: 18px;
+                padding: 10px 0;
+            }
+
+            .price-tag {
+                font-size: 30px;
+            }
+
+            .card-8 .pricing-compare > div:last-child {
+                font-size: 18px !important;
+            }
+
+            /* Card 9 */
+            .card-9 .emoji-header {
+                font-size: 70px;
+            }
+
+            .card-9 h2 {
+                font-size: 34px;
+            }
+
+            .card-9 .promo-subtitle {
+                font-size: 22px;
+            }
+
+            .promo-item {
+                font-size: 19px;
+                padding: 18px 22px;
+            }
+
+            .promo-deadline {
+                font-size: 22px;
+                padding: 18px 25px;
+            }
+
+            .promo-footer {
+                font-size: 22px;
+            }
+
+            /* Card 10 */
+            .card-10 .emoji-header {
+                font-size: 75px;
+            }
+
+            .card-10 h2 {
+                font-size: 38px;
+            }
+
+            .cta-message {
+                font-size: 24px;
+            }
+
+            .cta-button {
+                font-size: 21px;
+                padding: 20px 35px;
+            }
+
+            .hashtags {
+                font-size: 19px;
+            }
+        }
+
+        /* Large Desktop */
+        @media screen and (min-width: 1200px) {
+            .card {
+                padding: 50px 60px;
+            }
+
+            .card-1 .main-emoji {
+                font-size: 120px;
+            }
+
+            .card-1 h1 {
+                font-size: 54px;
+            }
+
+            .card-1 .highlight {
+                font-size: 40px;
+            }
+        }
+
+        /* iOS specific fixes */
+        @supports (-webkit-touch-callout: none) {
+            body {
+                position: fixed;
+                width: 100%;
+                height: 100vh;
+                height: -webkit-fill-available;
+            }
+
+            .container {
+                height: 100vh;
+                height: -webkit-fill-available;
+            }
+
+            .card-slider {
+                height: 100vh;
+                height: -webkit-fill-available;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="card-slider">
+            <div class="card-wrapper" id="cardWrapper">
+                <!-- Card 1 -->
+                <div class="card card-1">
+                    <div class="main-emoji">💥</div>
+                    <h1>충격 진실!</h1>
+                    <div class="highlight">
+                        "월 10만원으로<br>
+                        중견기업 수준의<br>
+                        경영시스템을 가질 수 있다"
+                    </div>
+                    <div class="tags">#업무효율200% #혁신경영</div>
+                    <div class="subtitle">중소기업 통합경영 시스템</div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="card card-2">
+                    <div class="emoji-header">😰</div>
+                    <h2>CEO님, 아직도 이러십니까?</h2>
+                    <div class="problem-list">
+                        <div class="problem-item">✓ 홈페이지 제작비 수백만원 부담스러워...</div>
+                        <div class="problem-item">✓ 정부지원사업 떨어지는 이유를 모르겠어...</div>
+                        <div class="problem-item">✓ ESG경영? 어디서부터 시작해야 할지...</div>
+                        <div class="problem-item">✓ 직원들 업무기록 관리가 안 돼...</div>
+                        <div class="problem-item">✓ 고객들 질문에 일일이 답변도 힘드네 ㅠ</div>
+                    </div>
+                    <div class="footer-text">
+                        💡 홈페이지 = 기업의 얼굴<br>= 기업 신뢰의 증명
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="card card-3">
+                    <div class="emoji-header">🚀</div>
+                    <h2>All-in-One 경영플랫폼</h2>
+                    <div class="subtitle">"홈페이지는 더이상<br>단순 '사이트'가 아닙니다"</div>
+                    <div class="feature-box">
+                        <h3>✅ 회사의 전문성과 신뢰를 어필하는</h3>
+                        <p>또 다른 얼굴이자 사무실</p>
+                    </div>
+                    <div class="feature-box">
+                        <h3>✅ ESG경영으로 우량기업 어필</h3>
+                        <p>지속가능경영/윤리경영/안전보건경영<br>성장가능성 어필</p>
+                    </div>
+                    <div class="feature-box">
+                        <h3>✅ 시점인증 시스템 기반의</h3>
+                        <p>법률적 보호장치 마련</p>
+                    </div>
+                    <div class="feature-box">
+                        <h3>✅ AI기반의 원활한 고객응대</h3>
+                        <p>핵심 플랫폼으로 변화<br>= 차세대 통합경영 시스템</p>
+                    </div>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="card card-4 feature-card">
+                    <div class="emoji-header">⚡</div>
+                    <h2>핵심 기능 1. 차별화 P/G</h2>
+                    <div class="feature-item">
+                        <h3>✨ 100% 커스터마이징</h3>
+                        <p>• 외주 없이 손쉬운 직접수정<br>• 실시간 변경 (코딩지식 불필요)</p>
+                    </div>
+                    <div class="feature-item">
+                        <h3>📜 시점인증 시스템</h3>
+                        <p>• 법적 효력 (증거자료 확보)<br>• 분쟁 시 강력한 법률적 안전장치</p>
+                    </div>
+                    <div class="feature-item">
+                        <h3>🌿 ESG경영 페이지</h3>
+                        <p>• 정부지원사업 가점 및 우대<br>• 금융권 대출금리 우대<br>• 공공기관/대기업 입찰 필수</p>
+                    </div>
+                </div>
+
+                <!-- Card 5 -->
+                <div class="card card-5 feature-card">
+                    <div class="emoji-header">📊</div>
+                    <h2>핵심 기능 2. 경영시스템 P/G</h2>
+                    <div class="feature-item">
+                        <h3>💼 출퇴근·급여P/G 연동(2026년초)</h3>
+                        <p>• 20인 이하 무료 제공<br>• 급여명세서 자동 발송<br>• 과태료 리스크 방지</p>
+                    </div>
+                    <div class="feature-item">
+                        <h3>📋 업무일지 시스템</h3>
+                        <p>• 직원들의 업무파악 용이<br>• 업무공백 최소화<br>• 인사평가 기초자료 활용</p>
+                    </div>
+                    <div class="feature-item">
+                        <h3>🏥 종합건강검진 복지 연계</h3>
+                        <p>• 대기업 수가적용(KMI)</p>
+                    </div>
+                </div>
+
+                <!-- Card 6 -->
+                <div class="card card-6 feature-card">
+                    <div class="emoji-header">🤖</div>
+                    <h2>핵심 기능 3. AI 플랫폼</h2>
+                    <h3 style="margin-bottom: 2vh; font-size: 2.8vh; color: var(--text-purple);">세계 4대 AI 통합 허브</h3>
+                    <div class="feature-item">
+                        <h3>✅ 고객문의 → AI 자동응대(RAG)</h3>
+                        <p>• 24시간 무중단 대응<br>• 회사 문서기반 자동 답변</p>
+                    </div>
+                    <div class="feature-item">
+                        <h3>✅ 생성형 4대 AI 구축</h3>
+                        <p>• GPT, Gemini 종량제 시스템 이용<br>• Claude, Perplexit(2026년초)<br>• AI비용 혁신적 절감</p>
+                    </div>
+                    <div style="margin-top: 2vh; font-size: 2.6vh; font-weight: 700; color: var(--text-navy); line-height: 1.4;">
+                        AI가 24시간 일하는<br>진짜 스마트 오피스 구현
+                    </div>
+                </div>
+
+                <!-- Card 7 -->
+                <div class="card card-7">
+                    <div style="font-size: 8vh; margin-bottom: 1vh;">💰</div>
+                    <h2>도입 후 실질혜택 Big 4</h2>
+                    <div class="benefit-grid">
+                        <div class="benefit-item">
+                            <div class="benefit-header">
+                                <div class="benefit-number">1️⃣</div>
+                                <div class="benefit-title">정부지원사업 경쟁력 강화</div>
+                            </div>
+                            <div class="benefit-desc">
+                                <span class="benefit-desc-item">• DX 기반 구축</span>
+                                <span class="benefit-desc-item">• ESG경영 인증</span>
+                                <span class="benefit-desc-item">• R&D 요소 충족</span>
+                            </div>
+                        </div>
+                        <div class="benefit-item">
+                            <div class="benefit-header">
+                                <div class="benefit-number">2️⃣</div>
+                                <div class="benefit-title">금융기관우대 신용평가개선</div>
+                            </div>
+                            <div class="benefit-desc">
+                                <span class="benefit-desc-item">• 비재무요소 개선</span>
+                                <span class="benefit-desc-item">• ESG 금융우대</span>
+                            </div>
+                        </div>
+                        <div class="benefit-item">
+                            <div class="benefit-header">
+                                <div class="benefit-number">3️⃣</div>
+                                <div class="benefit-title">법적 리스크 감소</div>
+                            </div>
+                            <div class="benefit-desc">
+                                <span class="benefit-desc-item">• 시점인증 효력</span>
+                                <span class="benefit-desc-item">• 근로기준법 준수</span>
+                            </div>
+                        </div>
+                        <div class="benefit-item">
+                            <div class="benefit-header">
+                                <div class="benefit-number">4️⃣</div>
+                                <div class="benefit-title">기업이미지제고 경쟁력향상</div>
+                            </div>
+                            <div class="benefit-desc">
+                                <span class="benefit-desc-item">• 체계성 확보</span>
+                                <span class="benefit-desc-item">• 우수인재 채용력</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 8 -->
+                <div class="card card-8">
+                    <div style="font-size: 8vh; margin-bottom: 1.5vh;">💸</div>
+                    <h2>도입 비용이 궁금하시죠?</h2>
+                    <div class="pricing-compare">
+                        <div class="pricing-box">
+                            <h3>[일반 시장가]</h3>
+                            <div class="pricing-item">
+                                <span>홈페이지 제작:</span>
+                                <span>수백~수천만원</span>
+                            </div>
+                            <div class="pricing-item">
+                                <span>AI 시스템 구축:</span>
+                                <span>수천만원</span>
+                            </div>
+                            <div class="pricing-item">
+                                <span>경영관리 솔루션:</span>
+                                <span>수백만원</span>
+                            </div>
+                        </div>
+                        <div class="pricing-box highlight">
+                            <h3>[통합경영시스템]</h3>
+                            <div class="pricing-item">
+                                <span>✅ 제작비:</span>
+                                <span>무료</span>
+                            </div>
+                            <div class="pricing-item">
+                                <span>✅ 유지보수비:</span>
+                                <span>무료</span>
+                            </div>
+                            <div class="pricing-item">
+                                <span>✅ 초기셋팅비:</span>
+                                <span>0원</span>
+                            </div>
+                            <div class="pricing-item">
+                                <span>✅ 등록비:</span>
+                                <span>10만원(1회)</span>
+                            </div>
+                            <div class="pricing-item" style="border-top: 2px solid rgba(255,255,255,0.3); padding-top: 15px; margin-top: 10px;">
+                                <span>✅ 월 이용료:</span>
+                                <span class="price-tag">10만원!</span>
+                            </div>
+                        </div>
+                        <div style="margin-top: 2vh; font-weight: 600; text-align: center; color: var(--text-black); font-size: 2.2vh;">
+                            투명한 요금체계<br>예상치 못한 비용 발생없음
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 9 -->
+                <div class="card card-9">
+                    <div class="emoji-header">🎁</div>
+                    <h2>추가 특별프로모션</h2>
+                    <div class="promo-subtitle">12월말까지 선착순 100개사</div>
+                    <div class="promo-item">
+                        ✨ 초기셋팅비(100만원) → 0원
+                    </div>
+                    <div class="promo-item">
+                        ✨ 웹호스팅 전액면제(이용전기간)
+                    </div>
+                    <div class="promo-deadline">
+                        ⏰ 2025년 12월 31일까지!
+                    </div>
+                    <div class="promo-footer">
+                        "Best System, Best Price"<br>
+                        월 10만원으로 중견기업의<br>
+                        통합경영시스템 장착
+                    </div>
+                </div>
+
+                <!-- Card 10 -->
+                <div class="card card-10">
+                    <div class="emoji-header">⚡</div>
+                    <h2>지금 바로 도입하세요</h2>
+                    <div class="cta-message">
+                        "지금이 아니면 지출이 커집니다.<br>
+                        귀사의 경쟁력과 매출성장을 견인할"
+                    </div>
+                    <div class="cta-buttons">
+                        <a href="https://www.youtube.com/watch?v=h-SbInXhCys&feature=youtu.be" target="_blank" class="cta-button">
+                            🎥 브리핑영상 보기
+                        </a>
+                        <a href="https://www.youtube.com/watch?v=68T6O7FByxc" target="_blank" class="cta-button secondary">
+                            📺 안내영상 보기
+                        </a>
+                    </div>
+                    <div class="hashtags">
+                        #중소기업통합경영시스템<br>
+                        #All-In-One 경영플랫폼<br>
+                        <br>
+                        <strong>*당 연구소 '전문위원'과 상의하세요!</strong>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Navigation Dots -->
+        <div class="nav-dots" id="navDots"></div>
+
+        <!-- Navigation Arrows -->
+        <button class="nav-arrow left" onclick="previousCard()">‹</button>
+        <button class="nav-arrow right" onclick="nextCard()">›</button>
+    </div>
+
+    <script>
+        let currentCard = 0;
+        const totalCards = 10;
+        const cardWrapper = document.getElementById('cardWrapper');
+        const navDots = document.getElementById('navDots');
+
+        // Create navigation dots
+        for (let i = 0; i < totalCards; i++) {
+            const dot = document.createElement('div');
+            dot.className = 'dot';
+            if (i === 0) dot.classList.add('active');
+            dot.onclick = () => goToCard(i);
+            navDots.appendChild(dot);
+        }
+
+        function updateCard(index) {
+            currentCard = Math.max(0, Math.min(index, totalCards - 1));
+            cardWrapper.style.transform = `translateX(-${currentCard * 100}%)`;
+
+            // Update dots
+            document.querySelectorAll('.dot').forEach((dot, i) => {
+                dot.classList.toggle('active', i === currentCard);
+            });
+        }
+
+        function nextCard() {
+            if (currentCard < totalCards - 1) {
+                updateCard(currentCard + 1);
+            }
+        }
+
+        function previousCard() {
+            if (currentCard > 0) {
+                updateCard(currentCard - 1);
+            }
+        }
+
+        function goToCard(index) {
+            updateCard(index);
+        }
+
+        // Touch/Swipe handling
+        let touchStartX = 0;
+        let touchEndX = 0;
+        let isDragging = false;
+
+        cardWrapper.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+            isDragging = true;
+        }, { passive: true });
+
+        cardWrapper.addEventListener('touchmove', (e) => {
+            if (!isDragging) return;
+            touchEndX = e.changedTouches[0].screenX;
+        }, { passive: true });
+
+        cardWrapper.addEventListener('touchend', () => {
+            if (!isDragging) return;
+            isDragging = false;
+
+            const swipeThreshold = 50;
+            const diff = touchStartX - touchEndX;
+
+            if (Math.abs(diff) > swipeThreshold) {
+                if (diff > 0) {
+                    nextCard();
+                } else {
+                    previousCard();
+                }
+            }
+        }, { passive: true });
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft') previousCard();
+            if (e.key === 'ArrowRight') nextCard();
+        });
+
+        // Fix iOS Safari height issue
+        function setVh() {
+            let vh = window.innerHeight * 0.01;
+            document.documentElement.style.setProperty('--vh', `${vh}px`);
+        }
+
+        setVh();
+        window.addEventListener('resize', setVh);
+        window.addEventListener('orientationchange', () => {
+            setTimeout(setVh, 100);
+        });
+    </script>
+</body>
+</html>
