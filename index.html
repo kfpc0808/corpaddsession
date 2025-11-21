@@ -222,6 +222,55 @@
             transform: translateY(0);
         }
 
+        /* Outline 정보 박스 */
+        .outline-box {
+            background: linear-gradient(135deg, #f8f6f1 0%, #ffffff 100%);
+            border: 2px solid rgba(212, 175, 55, 0.3);
+            border-radius: 12px;
+            padding: 16px 18px;
+            margin-bottom: 16px;
+        }
+
+        .outline-title {
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--deep-gray);
+            margin-bottom: 12px;
+            text-align: center;
+            padding-bottom: 8px;
+            border-bottom: 2px solid var(--primary-gold);
+        }
+
+        .outline-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .outline-list li {
+            font-size: 13px;
+            color: var(--text-primary);
+            line-height: 1.8;
+            padding: 6px 0;
+            padding-left: 8px;
+            position: relative;
+        }
+
+        .outline-list li strong {
+            color: var(--deep-gray);
+            font-weight: 600;
+        }
+
+        .outline-contact {
+            text-align: center;
+            margin-top: 12px;
+            padding-top: 12px;
+            border-top: 1px solid rgba(212, 175, 55, 0.2);
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--accent-red);
+        }
+
         /* 5가지 핵심 포인트 */
         .benefits-grid {
             display: grid;
@@ -669,7 +718,16 @@
                 </div>
 
                 <div class="cta-section">
-                    <p class="cta-label">* 참석하기 아래 Click</p>
+                    <div class="outline-box">
+                        <div class="outline-title">- Outline -</div>
+                        <ul class="outline-list">
+                            <li><strong>1. 진행시간 :</strong> 90분(1.5hrs)</li>
+                            <li><strong>2. 장소 :</strong> 서울 송파 (주)한국FP센터 회의실</li>
+                            <li><strong>3. 주차 :</strong> 가능(무료)</li>
+                            <li><strong>4. 비고 :</strong> 수서역(SRT)에서 Taxi로 약15분, 5호선 '거여역'에서 도보 약7분</li>
+                        </ul>
+                        <div class="outline-contact">☎ 박신제본부장 010-5244-1467</div>
+                    </div>
                     <button class="cta-button" onclick="window.open('https://forms.gle/TXKVuJKzquoWfWT98', '_blank')">
                         <span>지금 바로 신청하기 →</span>
                     </button>
